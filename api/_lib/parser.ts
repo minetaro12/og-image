@@ -32,7 +32,7 @@ export function parseRequest(req: IncomingMessage) {
     const parsedRequest: ParsedRequest = {
         fileType: extension === 'jpeg' ? extension : 'png',
         text: decodeURIComponent(text),
-        theme: decodeURIComponent(theme),
+        theme: decodeURIComponent(theme || "#000000"),
         md: md === '1' || md === 'true',
         fontSize: fontSize || '96px',
         background: decodeURIComponent(background || "")
