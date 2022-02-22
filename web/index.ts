@@ -152,7 +152,6 @@ const App = (_: any, state: AppState, setState: SetState) => {
     const {
         fileType = 'png',
         fontSize = '75px',
-        textcolor = 'black',
         md = true,
         text = '**Hello** World',
         showToast = false,
@@ -160,6 +159,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
         loading = true,
         overrideUrl = null,
         background = '',
+        textcolor = '',
     } = state;
     const mdValue = md ? '1' : '0';
     const url = new URL(window.location.origin);
@@ -176,13 +176,6 @@ const App = (_: any, state: AppState, setState: SetState) => {
         H('div',
             { className: 'pull-left' },
             H('div',
-                H(Field, {
-                    label: 'Text Color',
-                    input: H(TextInput, {
-                        value: textcolor,
-                        onchange: (val: string) => setLoadingState({ textcolor: val })
-                    })
-                }),
                 H(Field, {
                     label: 'File Type',
                     input: H(Dropdown, {
@@ -219,6 +212,13 @@ const App = (_: any, state: AppState, setState: SetState) => {
                     input: H(TextInput, {
                         value: background,
                         oninput: (val: string) => setLoadingState({ background: val })
+                    })
+                }),
+                H(Field, {
+                  label: 'Text Color',
+                  input: H(TextInput, {
+                      value: textcolor,
+                      oninput: (val: string) => setLoadingState({ textcolor: val})
                     })
                 }),
             )
