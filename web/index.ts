@@ -111,12 +111,6 @@ const Toast = ({ show, message }: ToastProps) => {
     );
 }
 
-const themeOptions: DropdownOption[] = [
-    { text: 'Black', value: 'black' },
-    { text: 'White', value: 'white' },
-    { text: 'Orange', value: '#FFA86A' },
-];
-
 const fileTypeOptions: DropdownOption[] = [
     { text: 'PNG', value: 'png' },
     { text: 'JPEG', value: 'jpeg' },
@@ -184,10 +178,9 @@ const App = (_: any, state: AppState, setState: SetState) => {
             H('div',
                 H(Field, {
                     label: 'Text Color',
-                    input: H(Dropdown, {
-                        options: themeOptions,
+                    input: H(TextInput, {
                         value: theme,
-                        onchange: (val: Theme) => setLoadingState({ theme: val })
+                        onchange: (val: string) => setLoadingState({ theme: val })
                     })
                 }),
                 H(Field, {
