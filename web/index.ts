@@ -114,6 +114,7 @@ const Toast = ({ show, message }: ToastProps) => {
 const themeOptions: DropdownOption[] = [
     { text: 'Black', value: 'black' },
     { text: 'White', value: 'white' },
+    { text: 'Orange', value: '#FFA86A' },
 ];
 
 const fileTypeOptions: DropdownOption[] = [
