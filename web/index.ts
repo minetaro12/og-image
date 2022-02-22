@@ -159,7 +159,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
         loading = true,
         overrideUrl = null,
         background = '',
-        textcolor = '',
+        textcolor = '#000000',
     } = state;
     const mdValue = md ? '1' : '0';
     const url = new URL(window.location.origin);
