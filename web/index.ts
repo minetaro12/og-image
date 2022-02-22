@@ -1,4 +1,4 @@
-import { ParsedRequest, Theme, FileType } from '../api/_lib/types';
+import { ParsedRequest, FileType } from '../api/_lib/types';
 const { H, R, copee } = (window as any);
 let timeout = -1;
 
@@ -132,26 +132,11 @@ const markdownOptions: DropdownOption[] = [
     { text: 'Markdown', value: '1' },
 ];
 
-const imageLightOptions: DropdownOption[] = [
-    { text: 'Vercel', value: 'https://assets.vercel.com/image/upload/front/assets/design/vercel-triangle-black.svg' },
-    { text: 'Next.js', value: 'https://assets.vercel.com/image/upload/front/assets/design/nextjs-black-logo.svg' },
-    { text: 'Hyper', value: 'https://assets.vercel.com/image/upload/front/assets/design/hyper-color-logo.svg' },
-];
-
-const imageDarkOptions: DropdownOption[] = [
-
-    { text: 'Vercel', value: 'https://assets.vercel.com/image/upload/front/assets/design/vercel-triangle-white.svg' },
-    { text: 'Next.js', value: 'https://assets.vercel.com/image/upload/front/assets/design/nextjs-white-logo.svg' },
-    { text: 'Hyper', value: 'https://assets.vercel.com/image/upload/front/assets/design/hyper-bw-logo.svg' },
-];
-
 interface AppState extends ParsedRequest {
     loading: boolean;
     showToast: boolean;
     messageToast: string;
     selectedImageIndex: number;
-    widths: string[];
-    heights: string[];
     overrideUrl: URL | null;
 }
 
@@ -175,13 +160,9 @@ const App = (_: any, state: AppState, setState: SetState) => {
         theme = 'light',
         md = true,
         text = '**Hello** World',
-        images=[imageLightOptions[0].value],
-        widths=[],
-        heights=[],
         showToast = false,
         messageToast = '',
         loading = true,
-        selectedImageIndex = 0,
         overrideUrl = null,
     } = state;
     const mdValue = md ? '1' : '0';
@@ -190,15 +171,6 @@ const App = (_: any, state: AppState, setState: SetState) => {
     url.searchParams.append('theme', theme);
     url.searchParams.append('md', mdValue);
     url.searchParams.append('fontSize', fontSize);
-    for (let image of images) {
-        url.searchParams.append('images', image);
-    }
-    for (let width of widths) {
-        url.searchParams.append('widths', width);
-    }
-    for (let height of heights) {
-        url.searchParams.append('heights', height);
-    }
 
     return H('div',
         { className: 'split' },
@@ -210,12 +182,6 @@ const App = (_: any, state: AppState, setState: SetState) => {
                     input: H(Dropdown, {
                         options: themeOptions,
                         value: theme,
-                        onchange: (val: Theme) => {
-                            const options = val === 'light' ? imageLightOptions : imageDarkOptions
-                            let clone = [...images];
-                            clone[0] = options[selectedImageIndex].value;
-                            setLoadingState({ theme: val, images: clone });
-                        }
                     })
                 }),
                 H(Field, {
