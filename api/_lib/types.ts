@@ -1,10 +1,9 @@
 export type FileType = 'png' | 'jpeg';
-export type Theme = 'black' | 'white' | '#FFA86A';
 
 export interface ParsedRequest {
     fileType: FileType;
     text: string;
-    theme: Theme;
+    theme: string;
     md: boolean;
     fontSize: string;
     background?: string;
