@@ -152,7 +152,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
     const {
         fileType = 'png',
         fontSize = '75px',
-        theme = 'black',
+        textcolor = 'black',
         md = true,
         text = '**Hello** World',
         showToast = false,
@@ -164,7 +164,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
     const mdValue = md ? '1' : '0';
     const url = new URL(window.location.origin);
     url.pathname = `${encodeURIComponent(text)}.${fileType}`;
-    url.searchParams.append('theme', theme);
+    url.searchParams.append('textcolor', textcolor);
     url.searchParams.append('md', mdValue);
     url.searchParams.append('fontSize', fontSize);
     if (background) {
@@ -179,8 +179,8 @@ const App = (_: any, state: AppState, setState: SetState) => {
                 H(Field, {
                     label: 'Text Color',
                     input: H(TextInput, {
-                        value: theme,
-                        onchange: (val: string) => setLoadingState({ theme: val })
+                        value: textcolor,
+                        onchange: (val: string) => setLoadingState({ textcolor: val })
                     })
                 }),
                 H(Field, {

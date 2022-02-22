@@ -10,8 +10,8 @@ export function parseRequest(req: IncomingMessage) {
     if (Array.isArray(fontSize)) {
         throw new Error('Expected a single fontSize');
     }
-    if (Array.isArray(theme)) {
-        throw new Error('Expected a single theme');
+    if (Array.isArray(textcolor)) {
+        throw new Error('Expected a text color');
     }
     if (Array.isArray(background)) {
         throw new Error('Expected a single background');
@@ -32,7 +32,7 @@ export function parseRequest(req: IncomingMessage) {
     const parsedRequest: ParsedRequest = {
         fileType: extension === 'jpeg' ? extension : 'png',
         text: decodeURIComponent(text),
-        theme: decodeURIComponent(theme || "#000000"),
+        textcolor: decodeURIComponent(textcolor || "#000000"),
         md: md === '1' || md === 'true',
         fontSize: fontSize || '96px',
         background: decodeURIComponent(background || "")
