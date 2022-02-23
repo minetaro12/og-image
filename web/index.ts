@@ -60,15 +60,18 @@ const Dropdown = ({ options, value, onchange, small }: DropdownProps) => {
 interface TextInputProps {
     value: string;
     oninput: (val: string) => void;
+    small: boolean;
+    placeholder?: string;
+    type?: string
 }
 
-const TextInput = ({ value, oninput }: TextInputProps) => {
+const TextInput = ({ value, oninput, small, type = 'text', placeholder = '' }: TextInputProps) => {
     return H('div',
-        { className: 'input-outer-wrapper' },
+        { className: 'input-outer-wrapper' + (small ? ' small' : '') },
         H('div',
             { className: 'input-inner-wrapper' },
             H('input',
-                { type: 'text', value, oninput: (e: any) => oninput(e.target.value) }
+                { type, value, placeholder, oninput: (e: any) => oninput(e.target.value) }
             )
         )
     );
@@ -161,6 +164,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
         background = '',
         textcolor = '#000000',
     } = state;
+
     const mdValue = md ? '1' : '0';
     const url = new URL(window.location.origin);
     url.pathname = `${encodeURIComponent(text)}.${fileType}`;
